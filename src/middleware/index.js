@@ -1,7 +1,7 @@
-import { verifyAuth } from'./functions/verifyAuth.js';
-
+import { verifyAuth } from "./functions/verifyAuth.js";
+import { verifyUser } from "./functions/verifyUser.js";
 
 export default {
-    verifyAuth,
-    
-}
+  verifyAuth,
+  verifyUser,
+};
