@@ -1,0 +1,23 @@
+{
+  "name": "mini-instagram",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "- Fazer login\r - Fazer cadastro\r - Ver os dados do seu perfil\r - Editar os dados do seu perfil\r - Ver postagens de outras pessoas\r - Curtir postagens de outras pessoas\r - Ver quantidade de curtidas numa postagem\r - Ver os comentários em uma postagem\r - Comentar em postagens\r - Curtir uma postagem",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "node --watch ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "pg": "^8.11.3"
+  }
+}
