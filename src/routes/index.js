@@ -4,8 +4,8 @@ import middleware from "../middleware/index.js";
 
 export const routes = express();
 
-routes.post("/user/login", controller.login);
-routes.post("/user/register");
+routes.post("/user/login", middleware.verifyUser, controller.login);
+routes.post("/user/register", middleware.verifyUser, controller.register);
 
 routes.use(middleware.verifyAuth);
 
