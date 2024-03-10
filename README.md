@@ -1,215 +1,69 @@
-# mini-instagram
+# Documentação do Mini Instagram
 
-## O que o usuário pode fazer
+## Introdução
 
-- Fazer login
-- Fazer cadastro
-- Ver os dados do seu perfil
-- Editar os dados do seu perfil
-- Ver postagens de outras pessoas
-- Curtir postagens de outras pessoas
-- Ver quantidade de curtidas numa postagem
-- Ver os comentários em uma postagem
-- Comentar em postagens
-- Curtir uma postagem
+O Mini Instagram é uma aplicação web inspirada no Instagram, onde os usuários podem compartilhar fotos, curtir postagens, comentar e interagir com outros usuários.
 
-## O que não será possível fazer
+## Funcionalidades Principais
 
-- Ver localização de uma postagem
-- Ver pessoas que curtiram uma postagem
-- Curtir um comentário
-- Comentar em outros comentários
+### 1. Autenticação de Usuários
 
+- Os usuários podem criar uma conta fornecendo um nome de usuário, endereço de e-mail e senha.
+- Eles também podem fazer login na plataforma usando suas credenciais registradas.
 
-## Endpoints
+### 2. Publicação de Postagens
 
-### POST - Login
+- Os usuários podem fazer upload de imagens para criar novas postagens.
+- Eles têm a opção de adicionar uma legenda à sua postagem.
 
-#### Dados enviados
-- username
-- senha
+### 3. Interação com Postagens
 
-#### Dados retornados
-- sucesso / error
-- token
+- Os usuários podem curtir postagens de outros usuários.
+- Eles podem comentar em postagens para interagir com o autor e outros usuários.
 
-#### Objetivos gerais
-- Validar username e senha
-- Buscar o usuario no banco de dados
-- Verificar se a senha informada está correta
-- Gerar token de acesso
-- Retornar dados do usuario e o token
+### 4. Feed de Postagens
 
----
+- O feed exibe uma lista de postagens de outros usuários, permitindo que os usuários naveguem e descubram novos conteúdos.
+- As postagens são exibidas em ordem cronológica, com as mais recentes no topo.
 
-### POST - Cadastro
+## Endpoints da API
 
-#### Dados enviados
-- username
-- senha
+### 1. Autenticação
 
-#### Dados retornados
-- sucesso / error
+- `POST /api/auth/register`: Registra um novo usuário na plataforma.
+- `POST /api/auth/login`: Autentica um usuário existente e gera um token de acesso.
 
-#### Objetivos gerais
-- Validar username e senha
-- Validar se o username já existe no banco de dados
-- Criptografar a senha
-- Cadastrar usuario no banco de dados
-- Retornar sucesso ou error
+### 2. Postagens
 
----
+- `POST /api/posts`: Cria uma nova postagem.
+- `GET /api/posts`: Recupera o feed de postagens para o usuário logado.
+- `GET /api/posts/:postId`: Recupera detalhes de uma postagem específica.
+- `POST /api/posts/:postId/like`: Curte uma postagem.
+- `DELETE /api/posts/:postId/like`: Descurte uma postagem.
+- `POST /api/posts/:postId/comment`: Comenta em uma postagem.
+- `DELETE /api/posts/:postId/comment/:commentId`: Remove um comentário de uma postagem.
 
-### GET - Perfil 
+## Instalação e Execução
 
-#### Dados enviados
-- token (terá id ou username)
+1. Clone o repositório do Mini Instagram: `git clone https://github.com/seu-usuario/mini-instagram.git`
+2. Navegue até o diretório do projeto: `cd mini-instagram`
+3. Instale as dependências do projeto: `npm install`
+4. Configure as variáveis de ambiente no arquivo `.env`.
+5. Inicie o servidor: `npm start`
+6. Acesse a aplicação em `http://localhost:3000`.
 
-#### Dados retornados
-> Objeto de profile
-- URL da foto
-- Nome
-- Username
-- Site
-- Bio
-> Objeto de Private Information
-- Email
-- Telefone
-- Genero
+## Tecnologias Utilizadas
 
-#### Objetivos gerais
-- Validar token do usuario 
-- Buscar o cadastro do usuario com a informação do token
-- Retornar os dados do usuario
+- Node.js
+- Express.js
+- PostgreSQL
+- Knex.js
+- React
+- Redux
+- HTML5
+- CSS3
 
----
+## Autor
 
-### PUT - Perfil
+Este projeto foi desenvolvido por [Seu Nome] como parte de [descrição do projeto].
 
-#### Dados enviados
-- token (terá id ou username)
-> Objeto de profile
-- URL da foto?
-- Nome?
-- Username?
-- Site?
-- Bio?
-> Objeto de Private Information
-- Email?
-- Telefone?
-- Genero?
-- Senha
-
-#### Dados retornados
-- sucesso / error
-
-
-#### Objetivos gerais
-- Validar token do usuario 
-- Buscar o cadastro do usuario com a informação do token
-- Exigir no mínimo um campo para atualizar
-- Criptografar nova senha informada
-- Verificar se o email e username são existentes no banco de dados informado
-- Atualizar registro do usuario no banco de dados
-- Retornar sucesso ou error
-
----
-
-### GET - Postagens
-
-#### Dados enviados
-- token (terá id ou username)
-- offset
-
-#### Dados retornados
-- Postagens []
-    - id
-    - curtido por mim
-    - Usuario
-        - URL da foto
-        - username
-        - é perfil Oficial?
-    - Fotos []
-    - Quantidade de curtida
-    - Comentários []
-        - username
-        - texto
-    - Data
-
-#### Objetivos gerais
-- Validar token do usuario 
-- Buscar o cadastro do usuario com a informação do token
-- Retornar os dados da postagem
-
----
-
-### POST - Postagens
-
-#### Dados enviados
-- token (terá id ou username)
-- texto
-- array com fotos
-
-#### Dados retornados
-- sucesso / error
-
-#### Objetivos gerais
-- Validar token do usuario 
-- Buscar o cadastro do usuario com a informação do token
-- Exigir no mínimo uma foto no array
-- Cadastrar postagem para o usuario logado
-- Cadastro das fotos da postagem
-
-
----
-
-### POST - Curtir
-
-#### Dados enviados
-- token (terá id ou username)
-- id da postagem
-
-#### Dados retornados
-- sucesso / error
-
-#### Objetivos gerais
-- Validar token do usuario 
-- Buscar o cadastro do usuario com a informação do token
-- Buscar o cadastro da postagem com o id informado
-- Verificar se o usuario já curtiu a postagem
-- Cadastrar curtida da postagem no banco de dados
-- Retornar sucesso ou error
-
----
-
-### POST - Comentar
-
-#### Dados enviados
-- token (terá id ou username)
-- id da postagem
-- texto
-
-#### Dados retornados
-- sucesso / error
-
-#### Objetivos gerais
-- Validar token do usuario 
-- Buscar o cadastro do usuario com a informação do token
-- Validar texto informado
-- Buscar o cadastro da postagem com o id informado
-- Cadastrar comentário da postagem no banco de dados
-- Retornar sucesso ou error
-
-
----
-
-## Validando endpoints
-
-- [ ] POST login
-- [ ] POST cadastro
-- [ ] GET perfil
-- [ ] PUT perfil
-- [ ] GET postagem
-- [ ] POST postagem
-- [ ] POST curtir
-- [ ] POST comentar
