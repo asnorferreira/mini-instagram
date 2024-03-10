@@ -59,8 +59,3 @@ O Mini Instagram é uma aplicação web inspirada no Instagram, onde os usuário
 - PostgreSQL
 - Knex.js
 - Deploy
-
-## Autor
-
-Este projeto foi desenvolvido por [Seu Nome] como parte de [descrição do projeto].
-
