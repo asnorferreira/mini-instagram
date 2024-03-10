@@ -21,7 +21,7 @@ export const login = async (req, res) => {
       return res.status(400).json({ error: "Password is required" });
     }
 
-    const dataTokenUser = { id: user.id, username: user.username };
+    const { senha: password, ...dataTokenUser } = user;
 
     const token = jwt.sign(dataTokenUser, process.env.JWT_PASS, {
       expiresIn: 86400,

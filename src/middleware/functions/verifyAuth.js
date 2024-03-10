@@ -16,7 +16,7 @@ export const verifyAuth = async (req, res, next) => {
 
     const { id } = jwt.verify(token, process.env.JWT_PASS);
 
-    const authUser = await knex("usuarios").select("id").where({ id }).first();
+    const authUser = await knex("usuarios").where({ id }).first();
 
     if (!authUser) {
       return res.status(401).json({ error: "Invalid token" });
